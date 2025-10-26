@@ -33,9 +33,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       );
 
       for (const section of sectionElements) {
+        const el = section as HTMLElement;
         if (
-          section.offsetTop <= scrollPosition + contentElement.clientHeight / 2 &&
-          section.offsetTop + section.clientHeight > scrollPosition + contentElement.clientHeight / 2
+          el.offsetTop <= scrollPosition + contentElement.clientHeight / 2 &&
+          el.offsetTop + section.clientHeight > scrollPosition + contentElement.clientHeight / 2
         ) {
           setActiveSection(section.id);
           break;
