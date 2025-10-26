@@ -1,0 +1,28 @@
+.gradient {
+  position: absolute;
+  inset: -1px; /* Overlap border slightly to prevent gaps */
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  background: radial-gradient(ellipse at 50% 50%, var(--gradient-color-1), var(--gradient-color-2), var(--gradient-color-3));
+  background-size: 200% 200%;
+  animation: moveGradient 15s ease infinite;
+  filter: url(#noiseFilter);
+  z-index: -1; /* Place it behind the content */
+  opacity: 0.75;
+}
+
+.svgFilter {
+  display: none;
+}
+
+@keyframes moveGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
