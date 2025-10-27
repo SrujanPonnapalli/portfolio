@@ -1,8 +1,7 @@
 "use client";
 import styles from "./Sidebar.module.css";
 import Link from "next/link";
-import { Github } from "lucide-react";
-import { Linkedin } from "lucide-react";
+import { Github, Linkedin, ArrowUpRight } from "lucide-react";
 
 export default function Sidebar ({
   theme,
@@ -49,8 +48,14 @@ export default function Sidebar ({
             </li>
             <li>
               {/* This link should point to a file in the `public` directory */}
-              <Link href="/resume.pdf" target="_blank" aria-label="Resume">
+              <Link
+                href="/resume.pdf"
+                target="_blank"
+                aria-label="Resume"
+                className={styles.externalLink}
+              >
                 Resume
+                <ArrowUpRight size={12} />
               </Link>
             </li>
           </ul>

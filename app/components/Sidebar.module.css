@@ -63,6 +63,12 @@
   opacity: 0.7;
 }
 
+.externalLink {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
 /* Bottom Section */
 .bottom {
   display: flex;
