@@ -53,6 +53,8 @@ html, body {
   display: flex;
   flex-direction: row;
   padding: 2rem;
+  position: relative;
+  overflow: hidden;
 }
 
 .content {
@@ -61,12 +63,14 @@ html, body {
   overflow-y: auto;
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
+  z-index: 1;
 }
 
 .content-inner {
   position: relative;
   margin-left: 40rem;
   height: 100%;
+  z-index: 1;
 }
 
 .content section {
@@ -76,6 +80,8 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+  z-index: 1;
 }
 
 .about-section p {

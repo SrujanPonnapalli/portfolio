@@ -5,6 +5,7 @@ import { Montserrat, Source_Code_Pro } from "next/font/google";
 import { ReactNode, useState, useRef, useEffect } from "react";
 import Themes from "./components/Themes";
 import Copyright from "./components/Copyright";
+import WebGLGradient from "./components/WebGLGradient";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       >
         <div className="frame">
           <main className="container">
+            <WebGLGradient theme={theme} />
             <Sidebar
               theme={theme}
               isMonospace={isMonospace}

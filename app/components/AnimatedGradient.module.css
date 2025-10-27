@@ -1,28 +1,22 @@
 .gradient {
   position: absolute;
-  inset: -1px; /* Overlap border slightly to prevent gaps */
-  width: calc(100% + 2px);
-  height: calc(100% + 2px);
-  background: radial-gradient(ellipse at 50% 50%, var(--gradient-color-1), var(--gradient-color-2), var(--gradient-color-3));
-  background-size: 200% 200%;
-  animation: moveGradient 15s ease infinite;
-  filter: url(#noiseFilter);
-  z-index: -1; /* Place it behind the content */
-  opacity: 0.75;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* Default to dark theme - mostly black with 2 accents */
+  --gradient-color-1: #000000;
+  --gradient-color-2: #0066ff;
+  --gradient-color-3: #000000;
+  --gradient-color-4: #9900ff;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.svgFilter {
-  display: none;
+[data-theme="light"] .gradient {
+  /* Light theme - mostly white with 2 accents */
+  --gradient-color-1: #ffffff;
+  --gradient-color-2: #ff6b6b;
+  --gradient-color-3: #ffffff;
+  --gradient-color-4: #4ecdc4;
 }
 
-@keyframes moveGradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
