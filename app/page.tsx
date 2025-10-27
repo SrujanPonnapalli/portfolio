@@ -13,7 +13,7 @@ export default function Home() {
           <br />
           <p>
             I am a passionate and multidisciplinary student at NC State
-            University, intending to triple major in Computer Science, Economics,
+            University, majoring in Computer Science, Economics,
             and Applied Mathematics, with a minor in Cognitive Science. My
             interests span responsible AI development/research, economics,
             neuroscience, bioinformatics, and policy, and I seek to leverage

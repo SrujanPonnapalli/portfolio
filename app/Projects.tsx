@@ -50,14 +50,14 @@ const projectsData: ProjectItem[] = [
   {
     title: "Flood Impact Mapper",
     description:
-      "Developed a geospatial analysis project to map the extent of flooding in Asheville, NC, utilizing Synthetic Aperture Radar (SAR) to see through clouds. Processed satellite imagery and integrated public data from the USGS to create a highly accurate model of flood extent. Leveraged data analytics and visualization techniques to build an interactive, user-friendly map of flood impact.",
+      "A geospatial analysis project to map the extent of flooding in Asheville, NC, utilizing Synthetic Aperture Radar (SAR) to see through clouds. Utilizes satellite imagery and integrated public data from the USGS to create a highly accurate model of flood extent. Leverages data analytics and visualization techniques to show an interactive, user-friendly map of flood impact.",
     pills: ["Python", "Rasterio", "GeoPandas", "Folium"],
   },
   {
     title: "Pocket Librarian",
     projectURL: "https://github.com/DepixelStudios/PocketLibrarian",
     description:
-      "Developed a comprehensive Android mobile application for book discovery and management, featuring barcode scanning, advanced search capabilities, and personalized reading recommendations across 30+ genres. Implemented real-time barcode scanning using CodeScanner library, integrated Google Books API for detailed book metadata retrieval, and New York Times API for curated bestseller lists across categories.",
+      "A comprehensive Android mobile application for book discovery and management, featuring barcode scanning, advanced search capabilities, and personalized reading recommendations across 30+ genres.",
     pills: ["Kotlin", "Google Books API", "New York Times API"],
   },
 ];

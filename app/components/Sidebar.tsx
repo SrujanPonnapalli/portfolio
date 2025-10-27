@@ -3,7 +3,7 @@ import styles from "./Sidebar.module.css";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { useRef, useEffect } from "react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaSpotify } from "react-icons/fa";
 
 export default function Sidebar ({
   theme,
@@ -89,6 +89,9 @@ export default function Sidebar ({
           </Link>
           <Link href="https://linkedin.com/in/srujanponnapalli" target="_blank" aria-label="LinkedIn">
             <FaLinkedin size={24} />
+          </Link>
+          <Link href="https://open.spotify.com/user/ymq5jhmwqja3a20lpaizcx0lj?si=d325248e03ff4f8f" target="_blank" aria-label="Spotify">
+            <FaSpotify size={24} />
           </Link>
         </div>
       </div>
