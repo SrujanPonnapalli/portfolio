@@ -22,3 +22,7 @@ This is the source code for my personal portfolio website, built with Next.js an
 - **Styling:** CSS Modules
 - **Icons:** React Icons
 - **Linting/Formatting:** ESLint & Prettier (via Next.js defaults)
+
+## 🙏 Acknowledgements
+
+- The WebGL animated gradient background is a modified version of the code from [this gist by @jordienr](https://gist.github.com/jordienr/64bcf75f8b08641f205bd6a1a0d4ce1d).

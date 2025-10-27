@@ -1,5 +1,6 @@
 import Experience from "./Experience";
 import Education from "./Education";
+import Projects from "./Projects";
 
 export default function Home() {
   return (
@@ -32,9 +33,7 @@ export default function Home() {
         <Experience />
       </section>
       <section id="projects">
-        <h2 style={{ color: "var(--content-text-color)" }}>
-          Projects section coming soon...
-        </h2>
+        <Projects />
       </section>
       <section id="education">
         <Education />
