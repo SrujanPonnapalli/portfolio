@@ -1,9 +1,12 @@
+import Experience from "./Experience";
+import Education from "./Education";
+
 export default function Home() {
   return (
     <div className="content-inner">
       <section id="about" className="about-section">
         <div className="about-content">
-          <p>
+          <p className="greeting">
             Hello! <span className="wave-emoji">👋</span>
           </p>
           <br />
@@ -26,14 +29,15 @@ export default function Home() {
         </div>
       </section>
       <section id="experience">
-        <h2 style={{ color: "var(--content-text-color)" }}>
-          Experience section coming soon...
-        </h2>
+        <Experience />
       </section>
       <section id="projects">
         <h2 style={{ color: "var(--content-text-color)" }}>
           Projects section coming soon...
         </h2>
+      </section>
+      <section id="education">
+        <Education />
       </section>
     </div>
   );

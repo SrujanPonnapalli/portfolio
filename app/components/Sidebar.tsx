@@ -1,7 +1,9 @@
 "use client";
 import styles from "./Sidebar.module.css";
 import Link from "next/link";
-import { Github, Linkedin, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import { useRef, useEffect } from "react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function Sidebar ({
   theme,
@@ -12,6 +14,20 @@ export default function Sidebar ({
   isMonospace: boolean;
   activeSection: string;
 }) {
+  const navRef = useRef<HTMLUListElement>(null);
+  const dotRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (navRef.current && dotRef.current) {
+      const activeItem = navRef.current.querySelector(
+        `li[data-active='true']`
+      ) as HTMLLIElement;
+      if (activeItem) {
+        const top = activeItem.offsetTop;
+        dotRef.current.style.transform = `translateY(${top}px)`;
+      }
+    }
+  }, [activeSection]);
   return (
     <aside className={styles.sidebar}>
       <div>
@@ -21,30 +37,35 @@ export default function Sidebar ({
             <br />
             Ponnapalli
           </h1>
-          <p className={styles.caption}>Student</p>
+          <div className={styles.captionContainer}>
+            <p className={styles.caption}>Student</p>
+            <p className={styles.caption}>·</p>
+            <Link
+              href="https://park.ncsu.edu/"
+              target="_blank"
+              className={`${styles.caption} ${styles.externalLink}`}
+            >
+              Park Scholar
+              <ArrowUpRight size={12} />
+            </Link>
+          </div>
         </div>
 
 
         <nav className={styles.nav}>
-          <ul>
-            <li>
-              <Link href="#about">
-                {activeSection === "about" ? <div className={styles.dot} /> : "About"}
-              </Link>
+          <ul ref={navRef}>
+            <div ref={dotRef} className={styles.animatedDot} />
+            <li data-active={activeSection === "about"}>
+              <Link href="#about">About</Link>
             </li>
-            <li>
-              <Link href="#experience">
-                {activeSection === "experience" ? (
-                  <div className={styles.dot} />
-                ) : (
-                  "Experience"
-                )}
-              </Link>
+            <li data-active={activeSection === "experience"}>
+              <Link href="#experience">Experience</Link>
             </li>
-            <li>
-              <Link href="#projects">
-                {activeSection === "projects" ? <div className={styles.dot} /> : "Projects"}
-              </Link>
+            <li data-active={activeSection === "projects"}>
+              <Link href="#projects">Projects</Link>
+            </li>
+            <li data-active={activeSection === "education"}>
+              <Link href="#education">Education</Link>
             </li>
             <li>
               {/* This link should point to a file in the `public` directory */}
@@ -54,8 +75,7 @@ export default function Sidebar ({
                 aria-label="Resume"
                 className={styles.externalLink}
               >
-                Resume
-                <ArrowUpRight size={12} />
+                Resume <ArrowUpRight size={12} />
               </Link>
             </li>
           </ul>
@@ -65,10 +85,10 @@ export default function Sidebar ({
       <div className={styles.bottom}>
         <div className={styles.socials}>
           <Link href="https://github.com/srujanponnapalli" target="_blank" aria-label="GitHub">
-            <Github size={20} fill="currentColor" strokeWidth={0} />
+            <FaGithub size={24} />
           </Link>
           <Link href="https://linkedin.com/in/srujanponnapalli" target="_blank" aria-label="LinkedIn">
-            <Linkedin size={20} fill="currentColor" strokeWidth={0} />
+            <FaLinkedin size={24} />
           </Link>
         </div>
       </div>

@@ -8,6 +8,13 @@
   letter-spacing: 0.1em;
   color: var(--text-color);
 }
+@media (max-width: 768px) {
+  .themes {
+    position: relative;
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+}
 
 .themes button {
   background: none;

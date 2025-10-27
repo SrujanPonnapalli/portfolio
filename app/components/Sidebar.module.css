@@ -5,32 +5,44 @@
   width: 250px;
   padding-right: 2rem;
   position: relative;
-  z-index: 1;
+  z-index: 1; 
+}
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    padding-right: 0;
+    padding-bottom: 2rem;
+  }
 }
 
 /* Name */
 .name {
   font-size: 3.25rem; /* ~52px */
   line-height: 1.1;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--text-color);
   margin-left: -0.25rem;
+}
+@media (max-width: 768px) {
+  .name {
+    font-size: 2.5rem;
+  }
 }
 
 .caption {
   font-size: 1rem;
   color: var(--secondary-text-color);
-  margin-top: 0.5rem;
   font-weight: 400;
 }
 
-/* Navigation */
-.dot {
-  width: 6px;
-  height: 6px;
-  background: var(--text-color);
-  border-radius: 50%;
+.captionContainer {
+  margin-top: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
+
+/* Navigation */
 
 .nav {
   margin-top: 2.5rem;
@@ -38,35 +50,56 @@
 
 .nav ul {
   padding: 0;
+  position: relative;
   list-style: none;
 }
 
 .nav li {
   position: relative;
-  margin-bottom: 0.5rem;
+  padding: 0.5rem 0;
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: none;
 }
 
+.animatedDot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  background: var(--text-color);
+  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease;
+  /* Vertically center the dot within the li's padding area */
+  margin-top: calc(0.5rem + (1em / 2) - 3px);
+}
+
 .nav a {
   color: var(--text-color);
   text-decoration: none;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.3s ease;
   display: flex;
   align-items: center;
   height: 16px; /* Ensure consistent height */
+  opacity: 0.5;
+}
+
+.nav li[data-active="true"] a {
+  opacity: 0;
 }
 
 .nav a:hover {
-  opacity: 0.7;
+  opacity: 1;
 }
 
 .externalLink {
   display: flex;
   align-items: center;
   gap: 0.3rem;
+  white-space: nowrap;
+  text-decoration: none;
 }
 
 /* Bottom Section */

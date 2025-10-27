@@ -5,3 +5,9 @@
   font-size: 0.75rem;
   color: var(--copyright-text-color);
 }
+
+@media (max-width: 768px) {
+  .copyright {
+    position: relative;
+  }
+}
