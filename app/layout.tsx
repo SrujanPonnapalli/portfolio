@@ -62,6 +62,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <div className="frame">
           <main className="container">
             <WebGLGradient theme={theme} />
+            <div className="dot-grid-overlay" />
             <Sidebar
               theme={theme}
               isMonospace={isMonospace}

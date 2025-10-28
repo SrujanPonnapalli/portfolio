@@ -42,7 +42,7 @@ const techColorMap: { [key: string]: string } = {
 const projectsData: ProjectItem[] = [
   {
     title: "Personal Portfolio",
-    projectURL: "https://github.com/srujanponnapalli/srujan-portfolio",
+    projectURL: "https://github.com/srujanponnapalli/portfolio",
     description:
       "The site you're on right now! A clean, modern, and interactive showcase of my skills and experience, built with Next.js and TypeScript.",
     pills: ["Next.js", "TypeScript", "React", "CSS", "Vercel"],

@@ -480,6 +480,7 @@ function normalizeColor(hexCode) {
     * Initializes the four section colors by retrieving them from css variables.
     */
     initGradientColors() {
+        this.computedCanvasStyle = getComputedStyle(this.el);
         this.sectionColors = ["--gradient-color-1", "--gradient-color-2", "--gradient-color-3", "--gradient-color-4"].map(cssPropertyName => {
             let hex = this.computedCanvasStyle.getPropertyValue(cssPropertyName).trim();
             //Check if shorthand hex value was used and double the length so the conversion in normalizeColor will work.
@@ -488,7 +489,15 @@ function normalizeColor(hexCode) {
                 hex = `#${hexTemp}`
             }
             return hex && `0x${hex.substr(1)}`
-        }).filter(Boolean).map(normalizeColor)
+        }).filter(Boolean).map(normalizeColor);
+
+        // After updating the colors, we need to update the uniforms that the shader uses.
+        if (this.uniforms && this.sectionColors.length > 0) {
+            this.uniforms.u_baseColor.value = this.sectionColors[0];
+            for (let i = 1; i < this.sectionColors.length; i++) {
+                this.uniforms.u_waveLayers.value[i - 1].value.color.value = this.sectionColors[i];
+            }
+        }
     }
   }
   

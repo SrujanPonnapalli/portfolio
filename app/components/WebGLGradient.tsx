@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
-import styles from "./AnimatedGradient.module.css";
+import styles from "./WebGLGradient.module.css";
 
 // @ts-ignore - Gradient.js is a vanilla JS file
 import { Gradient } from './Gradient';
@@ -53,20 +53,6 @@ export default function WebGLGradient({ theme = "dark" }: WebGLGradientProps) {
     subtleUpdate();
     window.addEventListener('mousemove', handleMouseMove);
 
-    // Set CSS custom properties based on theme
-    if (theme === "light") {
-      canvas.style.setProperty('--gradient-color-1', '#b1eddd');
-      canvas.style.setProperty('--gradient-color-2', '#ffffff');
-      canvas.style.setProperty('--gradient-color-3', '#ffffff');
-      canvas.style.setProperty('--gradient-color-4', '#ffffff');
-    } else {
-      // Very dark gradient with one accent
-      canvas.style.setProperty('--gradient-color-1', '#291e4a');
-      canvas.style.setProperty('--gradient-color-2', '#000000');
-      canvas.style.setProperty('--gradient-color-3', '#000000');
-      canvas.style.setProperty('--gradient-color-4', '#000000');
-    }
-
     // Initialize the Gradient
     const gradient = new Gradient() as any;
     gradientRef.current = gradient;
@@ -80,6 +66,11 @@ export default function WebGLGradient({ theme = "dark" }: WebGLGradientProps) {
         gradientRef.current.pause?.();
       }
     };
+  }, []); // Run only once on mount
+
+  // This effect will re-initialize the gradient colors when the theme changes.
+  useEffect(() => {
+    gradientRef.current?.initGradientColors();
   }, [theme]);
 
   return (
@@ -91,4 +82,3 @@ export default function WebGLGradient({ theme = "dark" }: WebGLGradientProps) {
     />
   );
 }
-

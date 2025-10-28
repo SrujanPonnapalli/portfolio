@@ -1,6 +1,7 @@
 import Experience from "./Experience";
 import Education from "./Education";
 import Projects from "./Projects";
+import { ArrowUpRight } from "lucide-react";
 
 export default function Home() {
   return (
@@ -30,13 +31,32 @@ export default function Home() {
         </div>
       </section>
       <section id="experience">
+        <h2 className="section-header">Experience</h2>
         <Experience />
       </section>
       <section id="projects">
+        <h2 className="section-header">Projects</h2>
         <Projects />
       </section>
       <section id="education">
+        <h2 className="section-header">Education</h2>
         <Education />
+      </section>
+      <section id="resume" className="resume-section">
+        <p className="resume-link-container">
+          View my full{" "}
+          <a href="/resume.pdf" target="_blank" className="resume-anchor">
+            <span className="contact-link">resume</span>
+            <ArrowUpRight
+              size={16}
+              style={{
+                display: "inline-block",
+                marginLeft: "4px",
+                verticalAlign: "bottom",
+              }}
+            />
+          </a>
+        </p>
       </section>
     </div>
   );

@@ -13,18 +13,22 @@
   --icon-color: #f5f5f5;
   --pill-background-color: rgba(255, 255, 255, 0.05);
   --pill-text-color: #e0e0e0;
-  --gradient-color-1: #333333;
-  --gradient-color-2: #222222;
-  --gradient-color-3: #111111;
+  --dot-color: rgba(255, 255, 255, 0.15);
+
+  /* DARK gradient colors */
+  --gradient-color-1: #27175f;
+  --gradient-color-2: #00000000;
+  --gradient-color-3: #00000000;
+  --gradient-color-4: #00000000;
 }
 
 [data-theme="light"] {
-  --background-color: #f8f8f8;
+  --background-color: #ffffff;
   --text-color: #0a0a0a;
   --border-color: #e5e5e5;
-  --secondary-text-color: #555;
+  --secondary-text-color: #4a4a4a;
   --copyright-text-color: #999;
-  --content-text-color: #999;
+  --content-text-color: #4a4a4a;
   --card-background-color: rgba(255, 255, 255, 0.25);
   --card-background-hover-color: rgba(255, 255, 255, 0.4);
   --border-hover-color: #ddd;
@@ -32,9 +36,13 @@
   --icon-color: #0a0a0a;
   --pill-background-color: rgba(209, 209, 209, 0.19);
   --pill-text-color: #222;
-  --gradient-color-1: #ffffff;
-  --gradient-color-2: #f0f0f0;
-  --gradient-color-3: #e5e5e5;
+  --dot-color: rgba(0, 0, 0, 0.15);
+
+  /* LIGHT gradient colors */
+  --gradient-color-1: #92e6d0;
+  --gradient-color-2: #ffffff;
+  --gradient-color-3: #ffffff;
+  --gradient-color-4: #ffffff;
 }
 
 /* Basic reset and defaults */
@@ -49,6 +57,20 @@ html, body {
   font-family: 'Inter', sans-serif;
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Paper Texture Overlay */
+body::after {
+  content: "";
+  background-image: url("/paper_texture.jpg");
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.08;
+  mix-blend-mode: multiply;
+  pointer-events: none; /* Ensures it doesn't interfere with mouse interactions */
 }
 
 .frame {
@@ -79,13 +101,33 @@ html, body {
   }
 }
 
+.dot-grid-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+  background-size: 16px 16px;
+  mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, black 70%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, black 70%, transparent 100%);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+}
+
 .content {
   flex: 1;
   position: relative;
   overflow-y: auto;
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
-  z-index: 1;
+  z-index: 2;
 }
 
 .content-inner {
@@ -113,6 +155,27 @@ html, body {
   justify-content: center;
   position: relative;
   z-index: 1;
+}
+
+.resume-section {
+  min-height: auto !important; /* Override the default section height */
+  height: auto !important;
+  padding-bottom: 4rem !important; /* Add some space at the bottom */
+}
+
+.resume-link-container {
+  font-size: 1.125rem; /* 18px */
+  font-weight: 500;
+}
+
+.section-header {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--secondary-text-color);
+  margin-bottom: 2rem;
+  text-align: left;
 }
 
 .about-section p {
@@ -151,13 +214,13 @@ html, body {
   position: relative;
   text-decoration: none;
   color: inherit;
-  z-index: 0; /* Establish stacking context */
-  transition: color 0.3s ease;
+  z-index: 0;
+  /* No transition here for instant theme change */
 }
 
 .contact-link:hover {
   color: var(--background-color);
-  transition-delay: 0.1s; /* Delay color change slightly for effect */
+  transition: color 0.2s ease 0.1s; /* Apply transition only on hover */
 }
 
 .contact-link::after {
@@ -201,4 +264,11 @@ html, body {
 }
 .normal-weight {
   font-weight: 400;
+}
+.resume-anchor {
+  text-decoration: none;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
 }

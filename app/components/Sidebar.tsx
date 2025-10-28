@@ -43,7 +43,7 @@ export default function Sidebar ({
             <Link
               href="https://park.ncsu.edu/"
               target="_blank"
-              className={`${styles.caption} ${styles.externalLink}`}
+              className={`${styles.caption} ${styles.captionLink}`}
             >
               Park Scholar
               <ArrowUpRight size={12} />
@@ -68,11 +68,9 @@ export default function Sidebar ({
               <Link href="#education">Education</Link>
             </li>
             <li>
-              {/* This link should point to a file in the `public` directory */}
               <Link
                 href="/resume.pdf"
                 target="_blank"
-                aria-label="Resume"
                 className={styles.externalLink}
               >
                 Resume <ArrowUpRight size={12} />
