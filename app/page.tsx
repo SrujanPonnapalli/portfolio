@@ -43,7 +43,7 @@ export default function Home() {
         <Education />
       </section>
       <section id="resume" className="resume-section">
-        <p className="resume-link-container">
+        {/* <p className="resume-link-container">
           View my full{" "}
           <a href="/resume.pdf" target="_blank" className="resume-anchor">
             <span className="contact-link">resume</span>
@@ -56,7 +56,7 @@ export default function Home() {
               }}
             />
           </a>
-        </p>
+        </p> */}
       </section>
     </div>
   );
