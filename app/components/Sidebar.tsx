@@ -67,7 +67,7 @@ export default function Sidebar ({
             <li data-active={activeSection === "education"}>
               <Link href="#education">Education</Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 href="/resume.pdf"
                 target="_blank"
@@ -75,7 +75,7 @@ export default function Sidebar ({
               >
                 Resume <ArrowUpRight size={12} />
               </Link>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>
