@@ -1,29 +1,91 @@
 import styles from "./Experience.module.css";
 import { Briefcase } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
+import ncsuLogo from "../public/ncsu_logo.png";
 import unccLogo from "../public/uncc_logo.jpeg";
 import youthPromiseLogo from "../public/youthpromise_logo.png";
 import jyiLogo from "../public/jyi_logo.png";
 import type { ReactNode } from "react";
+import type { CSSProperties } from "react";
+
+function getRandomColor(str: string): string {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 6) - hash);
+  }
+  const hue = hash % 360;
+  return `hsla(${hue}, 70%, 50%, 0.3)`;
+}
+
+const techColorMap: { [key: string]: string } = {
+  "Python": "hsla(207, 49%, 40%, 0.3)",
+  "RDKit": "hsla(120, 40%, 45%, 0.3)",
+  "PyTorch": "hsla(30, 100%, 45%, 0.3)",
+  "GNN": "hsla(270, 50%, 40%, 0.3)",
+  "Machine Learning": "hsla(193, 95%, 40%, 0.3)",
+  "YOLOv7": "hsla(220, 60%, 50%, 0.3)",
+  "Computer Vision": "hsla(180, 50%, 45%, 0.3)",
+  "Robotics": "hsla(15, 80%, 45%, 0.3)",
+  "TypeScript": "hsla(210, 58%, 50%, 0.3)",
+  "React": "hsla(193, 95%, 68%, 0.3)",
+  "Next.js": "hsla(55, 100%, 37%, 0.30)",
+  "JavaScript": "hsla(54, 100%, 46%, 0.30)",
+  "Kotlin": "hsla(230, 80%, 50%, 0.3)",
+  "Java": "hsla(23, 100%, 46%, 0.30)",
+};
 
 interface ExperienceItem {
   title: string;
   company: string;
   companyURL?: string;
   logo?: StaticImageData;
+  logoScale?: number;
   logoBackground?: string;
   logoClassName?: string;
   pills: string[];
+  skills?: string[];
   description: (string | ReactNode)[];
 }
 
 const experienceData: ExperienceItem[] = [
+  {
+    title: "Undergraduate Researcher",
+    company: "North Carolina State University (AIMS Laboratory)",
+    companyURL: "https://mse.ncsu.edu/yingling/",
+    logo: ncsuLogo,
+    logoScale: 0.7,
+    logoBackground: "#C8102E",
+    pills: ["Raleigh, NC", "Jan 2026 – Present", "Research"],
+    skills: ["Python", "RDKit", "PyTorch", "GNN", "Machine Learning"],
+    description: [
+      <>
+        Developing physics-informed machine learning architectures (Graph Neural Networks) to predict the environmental half-life and persistence of{" "}
+        <a href="https://www.epa.gov/pfas" target="_blank" rel="noopener noreferrer" className="expanding-underline">
+          PFAS/PFOS
+        </a>{" "}
+        chemicals under the guidance of{" "}
+        <a href="https://mse.ncsu.edu/yingling/" target="_blank" rel="noopener noreferrer" className="expanding-underline">
+          Dr. Yaroslava Yingling
+        </a>.
+      </>,
+      <>
+        Building a cheminformatics pipeline using{" "}
+        <a href="https://github.com/rdkit/rdkit" target="_blank" rel="noopener noreferrer" className="expanding-underline">
+          RDKit
+        </a>{" "}
+        to generate molecular fingerprints and feature vectors used to train deep learning models on ~14,000 chemical structures.
+      </>,
+      "Implementing active learning loops and uncertainty quantification to refine model predictions for a real-world environmental decision platform.",
+      "Collaborating with the research team to define mechanistic class ontologies that categorize compounds by their fate and treatment potential.",
+    ],
+  },
   {
     title: "Machine Learning Research Intern",
     company: "University of North Carolina at Charlotte",
     companyURL: "https://www.charlotte.edu/",
     logo: unccLogo,
     pills: ["Charlotte, NC", "Aug 2023 – Oct 2023", "Internship"],
+    skills: ["Python", "YOLOv7", "Computer Vision", "Real-Time Processing"],
     description: [
       <>
         Integrated the{" "}
@@ -45,6 +107,7 @@ const experienceData: ExperienceItem[] = [
     logoBackground: "#432676ff",
     logo: youthPromiseLogo,
     pills: ["Remote", "Nov 2022 – May 2024", "Tutoring"],
+    skills: ["Mathematics", "Computer Science", "Teaching"],
     description: [
       "Provided mentorship and technical instruction in mathematics and computer science to underprivileged youth.",
       "Managed and coordinated a team of 10+ tutors, ensuring efficient scheduling and high-quality instruction.",
@@ -59,6 +122,7 @@ const experienceData: ExperienceItem[] = [
     logoClassName: styles.jyiLogo,
     logoBackground: "#ffffffff",
     pills: ["Remote", "Aug 2023 - Sep 2023", "Internship"],
+    skills: ["Writing", "Research"],
     description: [
       <>
         Wrote and published compelling{" "}
@@ -79,7 +143,16 @@ export default function Experience() {
       {experienceData.map((item, index) => {
         const icon = (
           <div className={styles.iconContainer} style={item.logoBackground ? { backgroundColor: item.logoBackground } : {}}>
-            {item.logo ? (<Image src={item.logo} alt={`${item.company} logo`} className={`${styles.logo} ${item.logoClassName || ""}`} />) : (<Briefcase size={24} />)}
+            {item.logo ? (
+              <Image
+                src={item.logo}
+                alt={`${item.company} logo`}
+                className={`${styles.logo} ${item.logoClassName || ""}`}
+                style={item.logoScale != null ? { transform: `scale(${item.logoScale})`, objectFit: "contain" } : undefined}
+              />
+            ) : (
+              <Briefcase size={24} />
+            )}
           </div>
         );
 
@@ -130,6 +203,23 @@ export default function Experience() {
                 ))}
               </ul>
             </div>
+            {item.skills && item.skills.length > 0 && (
+              <div className={styles.skillPills}>
+                {item.skills.map((skill, i) => (
+                  <span
+                    key={i}
+                    className={styles.pill}
+                    style={
+                      {
+                        "--pill-background-color": techColorMap[skill] || getRandomColor(skill),
+                      } as CSSProperties
+                    }
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
         </div>)
       })}

@@ -41,6 +41,13 @@ const techColorMap: { [key: string]: string } = {
 
 const projectsData: ProjectItem[] = [
   {
+    title: "Paper Trails",
+    projectURL: "https://github.com/sainelluri0306/Paper-Trails/tree/main",
+    description:
+      "A forensic intelligence engine designed to combat context collapse by tracing digital media back to its origin. Orchestrates a multi-model pipeline (Claude, Gemini) alongside Google Lens and Fact Check APIs to generate irrefutable evidence boards, revealing the chronological history of images and claims to expose misinformation.",
+    pills: ["Next.js", "TypeScript", "AWS Bedrock", "Google Gemini", "Google Lens", "SerpAPI", "Tailwind CSS"],
+  },
+  {
     title: "Personal Portfolio",
     projectURL: "https://github.com/srujanponnapalli/portfolio",
     description:

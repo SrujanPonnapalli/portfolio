@@ -31,6 +31,7 @@
   justify-content: center;
   background-color: var(--icon-background-color);
   color: var(--icon-color);
+  overflow: hidden;
 }
 .iconLink {
   display: block;
@@ -90,6 +91,14 @@
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+}
+
+.skillPills {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 0.5rem;
 }
 
 .pill {
