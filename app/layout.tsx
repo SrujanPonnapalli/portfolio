@@ -55,22 +55,31 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    // Ensure viewport meta tag is set for iOS Safari
-    const viewport = document.querySelector('meta[name="viewport"]');
-    if (!viewport) {
-      const meta = document.createElement('meta');
-      meta.name = 'viewport';
-      meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover';
-      document.head.appendChild(meta);
-    } else {
+    // Ensure viewport meta tag is set for iOS Safari - must be in head before render
+    const setViewport = () => {
+      let viewport = document.querySelector('meta[name="viewport"]');
+      if (!viewport) {
+        viewport = document.createElement('meta');
+        viewport.setAttribute('name', 'viewport');
+        document.head.insertBefore(viewport, document.head.firstChild);
+      }
       viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
-    }
+    };
+    
+    // Set immediately
+    setViewport();
+    // Also set on next tick to ensure it sticks
+    setTimeout(setViewport, 0);
   }, []);
 
   return (
-    <html lang="en" data-theme={theme}>
+    <html lang="en" data-theme={theme} style={{ background: 'var(--background-color)' }}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+      </head>
       <body
         className={isMonospace ? sourceCodePro.className : montserrat.className}
+        style={{ background: 'var(--background-color)', margin: 0, padding: 0 }}
       >
         <div className="frame">
           <main className="container">
