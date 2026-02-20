@@ -73,13 +73,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <html lang="en" data-theme={theme} style={{ background: 'var(--background-color)', width: '100vw', height: '100vh', height: '100dvh', margin: 0, padding: 0 }}>
+    <html lang="en" data-theme={theme} style={{ background: 'var(--background-color)', width: '100vw', height: '100dvh', margin: 0, padding: 0 }}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
       </head>
       <body
         className={isMonospace ? sourceCodePro.className : montserrat.className}
-        style={{ background: 'var(--background-color)', margin: 0, padding: 0, width: '100vw', height: '100vh', height: '100dvh', position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
+        style={{ background: 'var(--background-color)', margin: 0, padding: 0, width: '100vw', height: '100dvh', position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
       >
         <div className="frame">
           <main className="container">
