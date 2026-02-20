@@ -22,7 +22,7 @@ export default function Home() {
           <br />
           <p>
             Get in touch 👉{" "}
-            <a href="mailto:sponnap2@gmail.com" className="contact-link">
+            <a href="mailto:srujan.ponnapalli@gmail.com" className="contact-link">
               srujan.ponnapalli[at]gmail.com
             </a>
           </p>

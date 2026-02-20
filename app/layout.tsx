@@ -54,6 +54,19 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     };
   }, []);
 
+  useEffect(() => {
+    // Ensure viewport meta tag is set for iOS Safari
+    const viewport = document.querySelector('meta[name="viewport"]');
+    if (!viewport) {
+      const meta = document.createElement('meta');
+      meta.name = 'viewport';
+      meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover';
+      document.head.appendChild(meta);
+    } else {
+      viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
+    }
+  }, []);
+
   return (
     <html lang="en" data-theme={theme}>
       <body
