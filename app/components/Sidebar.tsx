@@ -59,6 +59,8 @@ export default function Sidebar ({
           <div className={styles.captionContainer}>
             <p className={styles.caption}>Student</p>
             <p className={styles.caption}>·</p>
+            <p className={styles.caption}>Researcher</p>
+            <p className={styles.caption}>·</p>
             <Link
               href="https://park.ncsu.edu/"
               target="_blank"
