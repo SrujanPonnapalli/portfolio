@@ -13,13 +13,11 @@ export default function Home() {
           </p>
           <br />
           <p>
-            I am a passionate and multidisciplinary student at NC State
-            University, majoring in Computer Science, Economics,
-            and Applied Mathematics, with a minor in Cognitive Science. My
-            interests span responsible AI development/research, economics,
-            neuroscience, bioinformatics, and policy, and I seek to leverage
-            data-driven insights to address global challenges in healthcare,
-            education, sustainability, and more.
+          I am a passionate and multidisciplinary student at NC State University, majoring in Computer Science, Economics, and Applied Mathematics, with a minor in Cognitive Science. My interests span responsible AI development, economics, neuroscience, bioinformatics, and policy, and I seek to leverage data-driven insights to address global challenges in healthcare, education, sustainability, and more.
+          </p>
+          <br />
+          <p>
+            Currently, I am working on physics-informed machine learning (graph neural networks) to predict environmental persistence of PFAS chemicals in the AIMS Lab with Dr. Yaroslava Yingling.
           </p>
           <br />
           <p>

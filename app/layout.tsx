@@ -72,14 +72,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               {children}
             </section>
           </main>
-          <Themes
-            activeTheme={theme}
-            setTheme={setTheme}
-            isMonospace={isMonospace}
-            setIsMonospace={setIsMonospace}
-          />
-          <Copyright />
         </div>
+        <footer className="frame-footer">
+          <div className="frame-footer-themes">
+            <Themes
+              activeTheme={theme}
+              setTheme={setTheme}
+              isMonospace={isMonospace}
+              setIsMonospace={setIsMonospace}
+            />
+          </div>
+          <Copyright />
+        </footer>
       </body>
     </html>
   );

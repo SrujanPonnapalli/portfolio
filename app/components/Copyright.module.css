@@ -1,13 +1,4 @@
 .copyright {
-  position: fixed;
-  bottom: 0.8rem;
-  left: 2.5rem; /* 40px */
   font-size: 0.75rem;
   color: var(--copyright-text-color);
-}
-
-@media (max-width: 768px) {
-  .copyright {
-    position: relative;
-  }
 }

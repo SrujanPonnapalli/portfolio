@@ -2,6 +2,7 @@ import styles from "./Experience.module.css";
 import { Briefcase } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
 import ncsuLogo from "../public/ncsu_logo.png";
+import renciLogo from "../public/renci_logo.jpg";
 import unccLogo from "../public/uncc_logo.jpeg";
 import youthPromiseLogo from "../public/youthpromise_logo.png";
 import jyiLogo from "../public/jyi_logo.png";
@@ -48,6 +49,19 @@ interface ExperienceItem {
 }
 
 const experienceData: ExperienceItem[] = [
+  {
+    title: "Incoming iRODS Intern",
+    company: "Renaissance Computing Institute",
+    companyURL: "https://renci.org/",
+    logo: renciLogo,
+    logoScale: 0.7,
+    logoBackground: "#000000",
+    pills: ["Chapel Hill, NC", "Jun 2026 – Aug 2026", "Internship"],
+    skills: ["Data Management", "iRODS"],
+    description: [
+      "Incoming iRODS Summer 2026 intern, focusing on policy‑driven data management workflows for large‑scale scientific research.",
+    ],
+  },
   {
     title: "Undergraduate Researcher",
     company: "North Carolina State University (AIMS Laboratory)",

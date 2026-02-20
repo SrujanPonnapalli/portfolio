@@ -3,15 +3,29 @@
   flex-direction: column;
   justify-content: space-between;
   width: 250px;
-  padding-right: 2rem;
+  min-width: 250px;
+  padding: 2rem 2rem 2rem 0;
   position: relative;
   z-index: 1;
+}
+.sidebarLeft {
+  min-width: 0;
 }
 @media (max-width: 768px) {
   .sidebar {
     width: 100%;
-    padding-right: 0;
-    padding-bottom: 2rem;
+    min-width: 0;
+    padding: 1rem 0 1rem 0;
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--border-color);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .sidebarLeft {
+    flex: 1;
+    min-width: 0;
   }
 }
 
@@ -22,10 +36,22 @@
   font-weight: 400;
   color: var(--text-color);
   margin-left: -0.25rem;
+  filter: drop-shadow(0 0 8px var(--gradient-color-1));
+  transition: filter 0.3s ease;
+}
+.name:hover {
+  filter: drop-shadow(0 0 12px var(--gradient-color-1));
+}
+.nameLine {
+  white-space: nowrap;
 }
 @media (max-width: 768px) {
   .name {
-    font-size: 2.5rem;
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+  .nameLine {
+    white-space: normal;
   }
 }
 
@@ -34,12 +60,23 @@
   color: var(--secondary-text-color);
   font-weight: 400;
 }
+@media (max-width: 768px) {
+  .caption {
+    font-size: 0.875rem;
+  }
+}
 
 .captionContainer {
   margin-top: 0.8rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-wrap: wrap;
+}
+@media (min-width: 769px) {
+  .captionContainer {
+    flex-wrap: nowrap;
+  }
 }
 
 .captionLink {
@@ -49,11 +86,21 @@
   text-decoration: none;
   white-space: nowrap;
 }
+@media (max-width: 768px) {
+  .captionLink {
+    white-space: normal;
+  }
+}
 
 /* Navigation */
 
 .nav {
   margin-top: 2.5rem;
+}
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+  }
 }
 
 .nav ul {
@@ -82,6 +129,11 @@
   transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease;
   /* Vertically center the dot within the li's padding area */
   margin-top: calc(0.5rem + (1em / 2) - 3px);
+}
+@media (max-width: 768px) {
+  .animatedDot {
+    display: none; /* horizontal nav: dot doesn't map 1:1 */
+  }
 }
 
 .nav a {
@@ -117,19 +169,103 @@
   flex-direction: column;
   gap: 1.5rem;
 }
+@media (max-width: 768px) {
+  .bottom {
+    flex-shrink: 0;
+    margin-top: 0;
+  }
+}
 
 .socials {
   display: flex;
+  align-items: center;
   gap: 1rem;
+}
+@media (max-width: 768px) {
+  .socials {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
 }
 
 .socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--text-color);
   transition: filter 0.3s ease, transform 0.3s ease;
   filter: drop-shadow(0 0 0px var(--gradient-color-1)); /* Start with no glow */
 }
 
 .socials a:hover {
-  transform: scale(1.1); /* Slightly enlarge icon on hover */
+  transform: scale(1.1); /* Enlarge icon on hover */
   filter: drop-shadow(0 0 8px var(--gradient-color-1)); /* Add glow on hover */
+}
+
+.copyEmailWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 24px;
+  line-height: 0;
+}
+
+.copyEmailBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color);
+  transition: filter 0.3s ease, transform 0.3s ease;
+  filter: drop-shadow(0 0 0px var(--gradient-color-1));
+  vertical-align: middle;
+}
+
+.copyEmailBtn:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 8px var(--gradient-color-1));
+}
+
+.copyEmailIcon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.copyEmailIcon > svg {
+  position: absolute;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.copyEmailPaperclip {
+  position: absolute;
+}
+
+.copyEmailToast {
+  position: absolute;
+  left: calc(100% + 0.7rem);
+  white-space: nowrap;
+  font-size: 1rem;
+  color: var(--primary-text-color);
+  opacity: 0;
+  animation: copyToastLife 2.5s ease forwards;
+}
+
+@keyframes copyToastLife {
+  0% { opacity: 0; }
+  8% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { opacity: 0; }
 }

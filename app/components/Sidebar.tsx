@@ -1,9 +1,12 @@
 "use client";
 import styles from "./Sidebar.module.css";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { useRef, useEffect } from "react";
-import { FaGithub, FaLinkedin, FaSpotify } from "react-icons/fa";
+import { ArrowUpRight, Paperclip } from "lucide-react";
+import { useRef, useEffect, useState, useCallback } from "react";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import DecodingName from "./DecodingName";
+
+const EMAIL = "sponnap2@gmail.com";
 
 export default function Sidebar ({
   theme,
@@ -16,6 +19,26 @@ export default function Sidebar ({
 }) {
   const navRef = useRef<HTMLUListElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
+  const [emailHover, setEmailHover] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
+  const copyTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const copyEmail = useCallback(() => {
+    navigator.clipboard.writeText(EMAIL).then(() => {
+      if (copyTimeoutRef.current) clearTimeout(copyTimeoutRef.current);
+      setEmailCopied(true);
+      copyTimeoutRef.current = setTimeout(() => {
+        setEmailCopied(false);
+        copyTimeoutRef.current = null;
+      }, 2500);
+    });
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (copyTimeoutRef.current) clearTimeout(copyTimeoutRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     if (navRef.current && dotRef.current) {
@@ -30,13 +53,9 @@ export default function Sidebar ({
   }, [activeSection]);
   return (
     <aside className={styles.sidebar}>
-      <div>
+      <div className={styles.sidebarLeft}>
         <div>
-          <h1 className={styles.name}>
-            Srujan
-            <br />
-            Ponnapalli
-          </h1>
+          <DecodingName isMonospace={isMonospace} />
           <div className={styles.captionContainer}>
             <p className={styles.caption}>Student</p>
             <p className={styles.caption}>·</p>
@@ -88,6 +107,24 @@ export default function Sidebar ({
           <Link href="https://linkedin.com/in/srujanponnapalli" target="_blank" aria-label="LinkedIn">
             <FaLinkedin size={24} />
           </Link>
+          <div className={styles.copyEmailWrap}>
+            <button
+              type="button"
+              className={styles.copyEmailBtn}
+              onClick={copyEmail}
+              onMouseEnter={() => setEmailHover(true)}
+              onMouseLeave={() => setEmailHover(false)}
+              aria-label="Copy email address"
+            >
+              <span className={styles.copyEmailIcon}>
+                <FaEnvelope size={24} style={{ opacity: emailHover ? 0 : 1 }} aria-hidden />
+                <Paperclip size={24} className={styles.copyEmailPaperclip} style={{ opacity: emailHover ? 1 : 0 }} aria-hidden />
+              </span>
+            </button>
+            {emailCopied && (
+              <span className={styles.copyEmailToast}>Copied!</span>
+            )}
+          </div>
         </div>
       </div>
     </aside>
