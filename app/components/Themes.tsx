@@ -32,7 +32,7 @@ export default function Themes({
       </button>
       <button
         onClick={() => setIsMonospace((prev) => !prev)}
-        className={isMonospace ? styles.activeTheme : ""}
+        className={`${isMonospace ? styles.activeTheme : ""} ${styles.monospaceBtn}`}
       >
         <span className={styles.square}>{isMonospace ? "■" : "□"}</span>
         <span className={styles.label}>MONOSPACE</span>

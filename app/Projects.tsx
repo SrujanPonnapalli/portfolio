@@ -1,14 +1,15 @@
+"use client";
 import styles from "./Projects.module.css";
 import Image, { StaticImageData } from "next/image";
 import { ArrowUpRight } from "lucide-react";
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import portfolioScreenshot from "../public/site_screenshot.png";
 
 interface ProjectItem {
   title: string;
   projectURL?: string;
   image?: StaticImageData;
-  description: string;
+  description: string | ReactNode;
   pills: string[];
 }
 
@@ -42,9 +43,21 @@ const techColorMap: { [key: string]: string } = {
 const projectsData: ProjectItem[] = [
   {
     title: "Paper Trails",
-    projectURL: "https://github.com/sainelluri0306/Paper-Trails/tree/main",
-    description:
-      "A forensic intelligence engine designed to combat context collapse by tracing digital media back to its origin. Orchestrates a multi-model pipeline (Claude, Gemini) alongside Google Lens and Fact Check APIs to generate irrefutable evidence boards, revealing the chronological history of images and claims to expose misinformation.",
+    projectURL: "https://devpost.com/software/ghostframe-ckn1p8",
+    description: (
+      <>
+        A forensic intelligence engine designed to combat context collapse by tracing digital media back to its origin. Orchestrates a multi-model pipeline (Claude, Gemini) alongside Google Lens and Fact Check APIs to generate irrefutable evidence boards, revealing the chronological history of images and claims to expose misinformation.{" "}
+        <a 
+          href="https://github.com/sainelluri0306/Paper-Trails/tree/main" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="contact-link"
+        >
+          View source code on GitHub
+        </a>
+        .
+      </>
+    ),
     pills: ["Next.js", "TypeScript", "AWS Bedrock", "Google Gemini", "Google Lens", "SerpAPI", "Tailwind CSS"],
   },
   {
@@ -73,6 +86,7 @@ export default function Projects() {
   return (
     <div className={styles.projectsSection}>
       {projectsData.map((item, index) => {
+        const descriptionHasLinks = typeof item.description !== "string";
         const cardContent = (
           <div className={styles.card}>
             {item.image && (
@@ -85,12 +99,25 @@ export default function Projects() {
               </div>
             )}
             <div className={styles.cardContent}>
-              <span className={`${styles.title} expanding-underline`}>
-                {item.title}{" "}
-                {item.projectURL && (
+              {item.projectURL && descriptionHasLinks ? (
+                <a
+                  href={item.projectURL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${styles.title} ${styles.titleLink} expanding-underline`}
+                  aria-label={`${item.title} project link`}
+                >
+                  {item.title}{" "}
                   <ArrowUpRight size={18} className={styles.arrowIcon} />
-                )}
-              </span>
+                </a>
+              ) : (
+                <span className={`${styles.title} expanding-underline`}>
+                  {item.title}{" "}
+                  {item.projectURL && (
+                    <ArrowUpRight size={18} className={styles.arrowIcon} />
+                  )}
+                </span>
+              )}
               <p className={styles.description}>{item.description}</p>
               <div className={styles.pills}>
                 {item.pills.map((pill, i) => (
@@ -111,7 +138,7 @@ export default function Projects() {
           </div>
         );
 
-        if (item.projectURL) {
+        if (item.projectURL && !descriptionHasLinks) {
           return (
             <a
               key={index}

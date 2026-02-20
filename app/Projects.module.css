@@ -87,6 +87,15 @@
   align-self: flex-start; /* Prevents the span from stretching full-width */
 }
 
+.titleLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.titleLink:hover {
+  color: var(--text-color);
+}
+
 .arrowIcon {
   display: inline-block;
 }

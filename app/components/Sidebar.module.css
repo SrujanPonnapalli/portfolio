@@ -15,7 +15,7 @@
   .sidebar {
     width: 100%;
     min-width: 0;
-    padding: 1rem 0 1rem 0;
+    padding: 1rem 1.5rem;
     flex-shrink: 0;
     border-bottom: 1px solid var(--border-color);
     flex-direction: row;
@@ -261,6 +261,13 @@
   color: var(--primary-text-color);
   opacity: 0;
   animation: copyToastLife 2.5s ease forwards;
+}
+
+@media (max-width: 768px) {
+  .copyEmailToast {
+    left: auto;
+    right: calc(100% + 0.7rem);
+  }
 }
 
 @keyframes copyToastLife {
